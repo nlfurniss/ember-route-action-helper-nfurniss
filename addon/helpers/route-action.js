@@ -3,7 +3,7 @@ import Helper from '@ember/component/helper';
 import { get, computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 import { run } from '@ember/runloop';
-import { runInDebug, assert } from '@ember/debug';
+import { assert } from '@ember/debug';
 import { ACTION } from '../-private/internals';
 
 function getCurrentHandlerInfos(router) {
@@ -39,19 +39,16 @@ export default Helper.extend({
     let router = get(this, 'router');
     assert('[ember-route-action-helper] Unable to lookup router', router);
 
-    runInDebug(() => {
-      let { handler } = getRouteWithAction(router, actionName);
-      assert(`[ember-route-action-helper] Unable to find action ${actionName}`, handler);
-    });
-
-    let routeAction = function(...invocationArgs) {
-      let { action, handler } = getRouteWithAction(router, actionName);
+    let action = function(...invocationArgs) {
       let args = params.concat(invocationArgs);
+      let { action, handler } = getRouteWithAction(router, actionName);
+      assert(`[ember-route-action-helper] Unable to find action ${actionName}`, handler);
+
       return run.join(handler, action, ...args);
     };
 
-    routeAction[ACTION] = true;
+    action[ACTION] = true;
 
-    return routeAction;
+    return action;
   }
 });

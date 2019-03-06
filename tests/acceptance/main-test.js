@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import Component from '@ember/component';
-import { test, skip } from 'ember-qunit';
+import { test } from 'ember-qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -21,8 +21,6 @@ moduleForAcceptance('Acceptance | main', {
       }
     }));
     this.application.register('template:dynamic', hbs`{{parent-component go=(route-action 'foo') }}`);
-    this.application.register('template:dynamic2', hbs`{{parent-component go=(route-action 'notAnAction')}}`);
-    this.application.register('template:dynamic3', hbs`{{parent-component go=(route-action 'bar')}}`);
     this.application.register('template:components/parent-component', hbs`{{child-component go=go}}`);
     this.application.register('template:components/child-component', hbs`<button class="do-it">GO!</button>`);
     this.application.register('component:child-component', Component.extend({
@@ -62,32 +60,4 @@ test('it can be used without rewrapping with (action (route-action "foo"))', fun
   assert.expect(1);
   visit('/dynamic');
   click('.do-it');
-});
-
-test('it works with async functions', function(assert) {
-  assert.expect(1);
-  visit('/dynamic3');
-  click('.do-it');
-});
-
-skip('it should throw an error immediately if the route action is missing', function(/* assert */) {
-  // Ember.assert is now async, need to figure out how to use ember-qunit-assert-helpers correctly
-  // let done = assert.async();
-  // assert.expectAssertion(() => {
-  //   visit('/dynamic2');
-  //   let expectedResult = 'Assertion Failed: [ember-route-action-helper] Unable to find action notAnAction';
-  //   andThen().catch(({ message }) => {
-  //     assert.equal(message, expectedResult);
-  //     done();
-  //   });
-  // });
-});
-
-test('it invokes action in the current route hierarchy', function(assert) {
-  visit('/thing');
-  click('.foo-button');
-  andThen(() => assert.equal(findWithAssert('.foo-value').text().trim(), 'Hello world Bob!'));
-  visit('/thing/route-with-action');
-  click('.foo-button');
-  andThen(() => assert.equal(findWithAssert('.foo-value').text().trim(), 'Set via route-with-action: Hello world Bob!'));
 });
