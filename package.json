@@ -1,6 +1,6 @@
 {
-  "name": "ember-route-action-helper-nfurniss",
-  "version": "3.0.0",
+  "name": "@nlfurniss/ember-route-action-helper",
+  "version": "3.0.1",
   "description": "Bubble closure actions in routes",
   "directories": {
     "doc": "doc",
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "https://github.com/nlfurniss/ember-route-action-helper-nfurniss",
+  "repository": "https://github.com/nlfurniss/ember-route-action-helper",
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
