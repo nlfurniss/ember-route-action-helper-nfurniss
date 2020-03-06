@@ -1,6 +1,5 @@
-/* eslint-env node */
-'use strict';
+"use strict";
 
 module.exports = {
-  name: 'ember-route-action-helper'
+  name: "ember-route-action-helper"
 };

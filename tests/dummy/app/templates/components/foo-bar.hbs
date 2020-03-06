@@ -1,6 +1,11 @@
-<div class="max-value">{{max}}</div>
+<div class="max-value">{{this.max}}</div>
 
-{{#if clicked}}
-  <button class="foo-button" {{action clicked "Bob!"}}>Click Me!</button>
+{{#if @clicked}}
+  <button class="foo-button" type="button" {{on "click" (fn @clicked "Bob!")}}>
+    Click Me!
+  </button>
 {{/if}}
-<button class="max-button" {{action (action "getMax") 20}}>Click Me!</button>
+
+<button class="max-button" type="button" {{on "click" (fn this._getMax 20)}}>
+  Click Me!
+</button>
