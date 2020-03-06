@@ -1,1 +1,1 @@
-export { default } from "@nlfurniss/ember-route-action-helper/helpers/route-action";
+export { default } from "ember-route-action-helper/helpers/route-action";

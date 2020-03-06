@@ -1,6 +1,6 @@
 {
   "name": "@nlfurniss/ember-route-action-helper",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Bubble closure actions in routes",
   "author": "Lauren Tan <arr@sugarpirate.com>",
   "directories": {
