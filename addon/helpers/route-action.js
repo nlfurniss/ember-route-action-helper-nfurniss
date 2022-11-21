@@ -2,7 +2,7 @@ import { A as emberArray } from "@ember/array";
 import Helper from "@ember/component/helper";
 import { get } from "@ember/object";
 import { getOwner } from "@ember/application";
-import { run } from "@ember/runloop";
+import { join } from "@ember/runloop";
 import { assert } from "@ember/debug";
 import { ACTION } from "../-private/internals";
 
@@ -51,7 +51,7 @@ export default class RouteAction extends Helper {
         handler
       );
 
-      return run.join(handler, action, ...args);
+      return join(handler, action, ...args);
     };
 
     action[ACTION] = true;
